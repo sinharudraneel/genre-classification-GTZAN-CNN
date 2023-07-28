@@ -47,6 +47,4 @@ def predict_from_input(model, input_array):
     for arr in prediction:
         arr_pred.append(np.argmax(arr, axis=0))
 
-    print(arr_pred)
-
     return st.mode(arr_pred)
