@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, app, jsonify, url_for, render_template, flash, redirect
+from flask import Flask, request, app, jsonify, url_for, render_template
 import tensorflow as tf
 import numpy as np
 import pandas as pd
@@ -38,8 +38,10 @@ def home():
 @app.route('/classify_api',methods=['GET','POST'])
 def classify_api():
     form = UploadFileForm()
-    if form.validate_on_submit():
+    if request.method == 'POST' and form.validate_on_submit():
         file = form.file.data
+        if (not allowed_file(file.filename)):
+            return "Wrong Input File Format"
         file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))
         if file and allowed_file(file.filename):
             #filename = secure_filename(file.filename)
