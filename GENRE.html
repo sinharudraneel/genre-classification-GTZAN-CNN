@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Find Genre</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="GENRE.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script>
+      document.getElementById('audioForm').addEventListener('submit', function(e) {
+          e.preventDefault(); // Prevent default form submission
+  
+          var fileInput = document.getElementById('audioFile');
+          var file = fileInput.files[0];
+  
+          if (file) {
+              // Create a FormData object and append the file to it
+              var formData = new FormData();
+              formData.append('audio', file);
+  
+              // Perform an AJAX request to upload the file
+              var xhr = new XMLHttpRequest();
+              xhr.open('POST', '/upload', true); // Replace '/upload' with your server-side endpoint
+              xhr.onreadystatechange = function() {
+                  if (xhr.readyState === 4 && xhr.status === 200) {
+                      // File uploaded successfully
+                      console.log('File uploaded!');
+                  }
+              };
+              xhr.send(formData);
+          }
+      });
+  </script>
+  </head>
+  <body>
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">Genre</label>
+      <ul>
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#About">About</a></li>
+        <li><a href="#FindGenre">Find Genre</a></li>
+      </ul>
+    </nav>
+    <div id="home" class="content">
+      <div class="bgImg">
+        <img src="./bg.jpg" class="image" alt="img">
+      </div>
+      <div class="homeHeading">
+        <div style="display: flex; justify-content: center;">
+          <h2  class="home">Home</h2>
+        </div>
+        <div class="homeText">
+          <p>Audio is sound that is within the acoustic range of human hearing. It is the audible portion on the spectrum of sound frequencies, distinct from inaudible sounds heard by certain animals or used in science and medicine.</p>
+          <p>The five main characteristics of sound waves include wavelength, amplitude, frequency, time period and velocity.</p>
+        </div>
+      </div>
+      <div class="homeMain">
+        <div>
+          <div class="homePair">
+            <h3 class="homePairHeading">>Wavelength:</h3>
+            <p class="homePara">Wavelength can be defined as the distance between two successive crests or troughs of a wave. It is measured in the direction of the wave. </p>
+          </div>
+          <div class="homePair">
+            <h3 class="homePairHeading">>Amplitude:</h3>  
+            <p class="homePara">The amplitude of a sound wave is the measure of the height of the wave. The amplitude of a sound wave can be defined as the loudness or the amount of maximum displacement of vibrating particles of the medium from their mean position when the sound is produced</p>
+          </div>
+          <div class="homePair">
+            <h3 class="homePairHeading">>Frequency:</h3>
+            <p class="homePara">Frequency, sometimes referred to as pitch, is the number of times per second that a sound pressure wave repeats itself. A drum beat has a much lower frequency than a whistle, and a bullfrog call has a lower frequency than a cricket. The lower the frequency, the fewer the oscillations.</p>
+          </div>
+          <div class="homePair">
+            <h3 class="homePairHeading">>Time period:</h3>
+            <p class="homePara">The time taken to complete one vibration in the density of the medium is called the time period of the sound wave. It is represented by the symbol T. Its SI unit is second (s).</p>
+          </div>
+          <div class="homePair">
+            <h3 class="homePairHeading">>Velocity:</h3>
+            <p class="homePara">The sound velocity through a given material is the distance that sound energy will propagate in that material in a given time and is a function of material density, the material's acoustic impedance, and the material's temperature.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="About" class="About">
+        <div style="display: flex; justify-content: center;">
+          <h2  class="home">About</h2>
+        </div>
+        <div class="aboutMain">
+          <p style="text-align: center; padding-bottom: 40px; font-weight: bold;">In this section we are going to dicuss about the technology we are using to know the genre of the audio</p>
+          <div class="aboutFlex">
+            <div>
+              <div class="homePair">
+                <h3 class="homePairHeading">>CNNs:</h3>
+                <p class="homePara">Neural networks are networks of artificial neurons, inspired by how the human brain works. These neurons are essentially mathematical functions that take some input and give some non-linear output. Multiple neurons are arranged in layers and the neurons in each layer are then connected to those of other layers through things called ‘weights’ which determine the activation of the neurons. When combined this way, these networks have great pattern recognition abilities, which help us in making machine learning/artificial intelligence models. There is typically an input layer, some hidden layers and an output layer.
+                <br>
+                Convolutional neural networks are primarily used for computer vision tasks, when machine learning systems need to deal with images. They are neural networks designed to be especially good at feature extraction from pictures using small matrices as filters and leveraging linear algebra concepts. </p>
+              </div>
+              <div class="homePair">
+                <h3 class="homePairHeading">>MFCCs:</h3>  
+                <p class="homePara">MFCCs, or Mel Frequency Cepstral Coefficients, are a feature extraction technique widely used in audio signal processing and speech recognition. They aim to represent the short-term power spectrum of a sound signal, mimicking the human auditory system's perception of sound. The process involves pre-emphasis, frame blocking, windowing, FFT (Fast Fourier Transform), Mel Filterbank, logarithm, and DCT (Discrete Cosine Transform). The Mel Filterbank captures the energy in specific frequency ranges, while the logarithm aligns the representation with human hearing. The DCT reduces the dimensionality of the feature vector. The resulting MFCCs form a compact representation of the audio signal, which can be used for various machine learning tasks. They are effective in capturing relevant information, making them a valuable tool in speech recognition, audio classification, and speaker identification applications.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="FindGenre" class="genre">
+        <h1 id="FindGenre">Find Genre</h1>
+        <form id="audioForm" enctype="multipart/form-data">
+          <input type="file" id="audioFile" accept="audio/*" class="input" />
+          <button type="submit" class="button">Upload</button>
+        </form>
+      </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+  
+      
+  </body>
+</html>
